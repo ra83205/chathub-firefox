@@ -1,7 +1,10 @@
 import { ofetch } from 'ofetch'
 
+//const DOMAIN_HOST = 'https://chathub.gg';
+const DOMAIN_HOST = 'http://127.0.0.1'
+
 export async function decodePoeFormkey(html: string): Promise<string> {
-  const resp = await ofetch('https://chathub.gg/api/poe/decode-formkey', {
+  const resp = await ofetch(`${DOMAIN_HOST}/api/poe/decode-formkey`, {
     method: 'POST',
     body: { html },
   })
@@ -17,7 +20,7 @@ type ActivateResponse =
   | { activated: false; error: string }
 
 export async function activateLicense(key: string, instanceName: string) {
-  return ofetch<ActivateResponse>('https://chathub.gg/api/premium/activate', {
+  return ofetch<ActivateResponse>(`${DOMAIN_HOST}/api/premium/activate`, {
     method: 'POST',
     body: {
       license_key: key,
@@ -31,11 +34,11 @@ interface Product {
 }
 
 export async function fetchPremiumProduct() {
-  return ofetch<Product>('https://chathub.gg/api/premium/product')
+  return ofetch<Product>(`${DOMAIN_HOST}/api/premium/product`)
 }
 
 export async function createDiscount() {
-  return ofetch<{ code: string; startTime: number }>('https://chathub.gg/api/premium/discount/create', {
+  return ofetch<{ code: string; startTime: number }>(`${DOMAIN_HOST}/api/premium/discount/create`, {
     method: 'POST',
   })
 }
@@ -59,10 +62,18 @@ interface PurchaseInfo {
   campaign?: Campaign
 }
 
+/*
 export async function fetchPurchaseInfo() {
-  return ofetch<PurchaseInfo>('https://chathub.gg/api/premium/info')
+  return ofetch<PurchaseInfo>(`${DOMAIN_HOST}/api/premium/info')
+}
+*/
+
+export async function fetchPurchaseInfo(): Promise<PurchaseInfo> {
+  return {
+    price: 0,
+  }
 }
 
 export async function checkDiscount(params: { appOpenTimes: number; premiumModalOpenTimes: number }) {
-  return ofetch<{ show: boolean; campaign?: Campaign }>('https://chathub.gg/api/premium/discount/check', { params })
+  return ofetch<{ show: boolean; campaign?: Campaign }>(`${DOMAIN_HOST}/api/premium/discount/check`, { params })
 }

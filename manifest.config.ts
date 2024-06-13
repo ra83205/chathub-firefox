@@ -22,7 +22,7 @@ export default defineManifest(async () => {
       'https://*.bing.com/',
       'https://*.openai.com/',
       'https://bard.google.com/',
-      'https://*.chathub.gg/',
+      //'https://*.chathub.gg/',
       'https://*.duckduckgo.com/',
       'https://*.poe.com/',
       'https://*.anthropic.com/',

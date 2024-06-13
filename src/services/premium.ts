@@ -13,7 +13,7 @@ function getInstanceName() {
 export async function activatePremium(licenseKey: string): Promise<PremiumActivation> {
   const instanceId = await lemonsqueezy.activateLicense(licenseKey, getInstanceName())
   const data = { licenseKey, instanceId }
-  localStorage.setItem('premium', JSON.stringify(data))
+  //localStorage.setItem('premium', JSON.stringify(data))
   return data
 }
 

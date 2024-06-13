@@ -31,9 +31,9 @@ function PremiumPage() {
     }
     setActivationError('')
     setActivating(true)
-    trackEvent('activate_license')
+    //trackEvent('activate_license')
     try {
-      await activatePremium(key)
+      //await activatePremium(key)
     } catch (err) {
       console.error('activation', err)
       setActivationError(getPath(err, 'data.error') || 'Activation failed')
